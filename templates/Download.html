@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Download Point Cloud</title>
-  </head>
-  <body>
-     <a href="/download/{{pointCloudName}}" download>Download</a>" 
-  </body>
+<head>
+    <title>Upload the file:</title>
+    <link rel='stylesheet' href='indexstyle.css'>
+</head>
+<body>
+  <p>Please upload the Blueprint file in DXF format</p>
+    <form action = "/" method = "post" enctype = "multipart/form-data">
+      <input type="file" name ="file">
+      <input type="submit" value="Upload">
+</body>
 </html>
