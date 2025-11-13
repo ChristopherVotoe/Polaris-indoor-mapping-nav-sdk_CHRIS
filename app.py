@@ -83,6 +83,11 @@ def generate_point_cloud(dxfFile, name):
         mid[2] = 300 #Door location on map
         door_points.append(mid)
 
+    for e in msp.query('LINE[layer=="0"]'):
+        mid = get_midpoint(e)
+        mid[2] = 300
+        door_points.append(mid)
+
 
     for e in msp.query('INSERT'):
         if e.dxf.layer == "A-DOOR":
@@ -122,6 +127,12 @@ def generate_point_cloud(dxfFile, name):
 
     # visualize
     fig = px.scatter_3d(df, x='X', y='Y', z='Z', color='Z', title=name)
+    fig.update_layout(
+        width=1400,
+        height=900,
+        margin=dict(l=0, r=0, t=40, b=0),
+        scene_aspectmode='data'
+    )
     fig.write_html(os.path.join("templates", "pc.html"))
 
     return pointCloudName
